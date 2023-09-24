@@ -31,10 +31,9 @@
             {{ range where $sections ".Params.header_menu" "eq" true }}
               {{ $button_title := .Title }}
               {{ with .Params.header_menu_title }}{{ $button_title = . }}{{ end }}
-
               {{ if isset .Params "external" }}
                  <a class='btn site-menu' href='{{ .Params.external }}'>{{ $button_title }}&nbsp;<icon class="fa fa-external-link"></icon></a>
-              {{ else }}
+              {{ else if isset .Params "button" }}
                 {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
                  <a class='btn site-menu' data-title-anchor='{{ anchorize $fnav_title }}' href='#{{ anchorize $fnav_title }}'>{{ $button_title }}</a>
               {{ end }}
